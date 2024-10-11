@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css'
+import LoginPage from './pages/LoginPage';
+import UserDashboard from './pages/UserDashboard';
+import QuizPage from './pages/QuizPage';
+import LevelSelection from './components/LevelSelection';
+import ResultPage from './pages/ResultPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
 
@@ -8,13 +14,18 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<h1>Home</h1>} />
+      <Route path="/" element={<UserDashboard/>} />
+      <Route path="/login" element={<LoginPage/>} />
+      <Route path="/level-selection" element={<LevelSelection/>}/>
+      <Route path="/result" element={<ResultPage/>}/>
+      <Route path="/quizpage" element={<QuizPage/>}/>
+      <Route path='/profile' element={<ProfilePage/>}/>
+
+
      
     </Routes>
     </BrowserRouter>
-    <h1 className="text-3xl font-bold underline">
-      Quiz app
-    </h1>
+    
     </>
   )
 }
