@@ -2,7 +2,7 @@ const mathData = {
     Easy: [
       { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correctAnswer: "4" },
       { question: "What is 5 - 3?", options: ["1", "2", "3", "4"], correctAnswer: "2" },
-      { question: "What is 10 / 2?", options: ["2", "3", "5", "7"], correctAnswer: "5" },
+      { question: "What is 10 / 2?",options: ["2", "3", "5", "7"], correctAnswer: "5" },
       { question: "What is 3 * 3?", options: ["6", "7", "8", "9"], correctAnswer: "9" },
       { question: "What is 7 + 1?", options: ["6", "7", "8", "9"], correctAnswer: "8" },
       { question: "What is 6 - 2?", options: ["2", "3", "4", "5"], correctAnswer: "4" },
