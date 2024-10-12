@@ -7,6 +7,8 @@ import QuizPage from './pages/QuizPage';
 import LevelSelection from './components/LevelSelection';
 import ResultPage from './pages/ResultPage';
 import ProfilePage from './pages/ProfilePage';
+import AdminDashboard from './pages/AdminDashboard';
+import CreateQuizForm from './pages/CreateQuizForm';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
       <Route path="/result" element={<ResultPage/>}/>
       <Route path="/quizpage" element={<QuizPage/>}/>
       <Route path='/profile' element={<ProfilePage/>}/>
+      <Route path='/admin' element={<AdminDashboard/>}/>
+      <Route path='/admin/create-quiz' element={<CreateQuizForm/>}/>
 
 
      
