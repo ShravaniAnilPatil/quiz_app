@@ -48,7 +48,7 @@ const Login = () => {
     if (user) {
       setError("");
       alert("Login successful!");
-      navigate("/dashboard"); // Navigate to another page after login
+      navigate("/quizpage"); // Navigate to another page after login
     } else {
       setError("Invalid username or password");
     }

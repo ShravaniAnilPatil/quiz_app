@@ -127,10 +127,45 @@ export default function QuizPage() {
   }
 
   const submitQuiz = async () => {
-    // Handle quiz submission logic here
-    // For now, just navigate to a result page with a dummy score
-    navigate(`/result?score=100`)
-  }
+    const score = calculateScore(); // Add a function to calculate the quiz score
+    const userName = "UserName"; // Replace with the actual user name, or fetch from state
+    const difficulty = questions ? state.difficulty : "Easy"; // Replace with actual difficulty
+  
+    const quizResult = {
+      userName,
+      score,
+      difficulty
+    };
+  
+    try {
+      const response = await fetch('/submit-quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(quizResult)
+      });
+  
+      if (response.ok) {
+        navigate(`/result?score=${score}`);
+      } else {
+        alert("Failed to submit quiz. Please try again.");
+      }
+    } catch (error) {
+      console.error('Submit quiz error:', error);
+      alert("An unexpected error occurred. Please try again later.");
+    }
+  };
+  
+  const calculateScore = () => {
+    // Add your logic to calculate the quiz score based on userAnswers and quizData
+    let score = 0;
+    userAnswers.forEach((answer, index) => {
+      if (answer === quizData[index].correctAnswer) {
+        score += 1; // Increment score for each correct answer
+      }
+    });
+    return score;
+  };
+  
 
   if (quizData.length === 0) {
     return <div>Loading...</div>

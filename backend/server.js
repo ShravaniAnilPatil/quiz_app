@@ -16,46 +16,34 @@ const csvFilePath = path.join(__dirname, '../frontend/public/user.csv');
 
 // Endpoint to register a new user
 app.post('/register', (req, res) => {
-    let { username, password } = req.body;
+    const { username, password } = req.body;
 
     // Validate input
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
 
-    // Trim username and password
-    username = username.trim();
-    password = password.trim(); // This should remove leading and trailing whitespace/newlines
-
-    // Debugging: Log the received username and password
-    console.log(`Received Username: "${username}", Received Password: "${password}"`);
-
-    // Check for existing users
+    // Read the current content of the CSV file
     fs.readFile(csvFilePath, 'utf8', (err, data) => {
         if (err) {
             return res.status(500).json({ message: 'Error reading CSV file' });
         }
 
-        // Split CSV into rows and filter out empty lines
-        const users = data.split('\n').filter(line => line.trim() !== '').map(line => {
-            const [user, pass] = line.split(',').map(field => field.trim());
-            return { name: user, password: pass };
-        });
+        // Ensure the file ends with a newline character
+        
+        // if (lines[lines.length - 1] !== '') {
+        //     // If the last line is not empty, add a newline
+        //     data += '\n';
+        // }
 
-        // Check for duplicate usernames
-        if (users.some(user => user.name === username)) {
-            return res.status(400).json({ message: 'Username already exists' });
-        }
+        // Prepare the new entry
+        const newEntry = `${username.trim()},${password.trim()}\n`; // Ensure each entry ends with a newline
 
-        // Prepare the new entry ensuring proper formatting
-        const newEntry = `${username},${password}\n`;
-        const blankLine = `\n`;
+        // Append the new entry to the CSV content
+        const updatedData = data + newEntry;
 
-        // Debugging: Log the new entry
-        console.log(`New Entry to be added: "${newEntry}"`);
-
-        // Add new user to CSV
-        fs.appendFile(csvFilePath,newEntry, (err) => {
+        // Write the updated data back to the CSV file
+        fs.writeFile(csvFilePath, updatedData, (err) => {
             if (err) {
                 return res.status(500).json({ message: 'Error writing to CSV file' });
             }
@@ -64,6 +52,28 @@ app.post('/register', (req, res) => {
     });
 });
 
+const csvFilePath1 = path.join(__dirname, '../frontend/public/user_scores.csv');
+
+// Endpoint to submit quiz results
+app.post('/submit-quiz', (req, res) => {
+    const { userName, score, difficulty } = req.body;
+
+    // Validate input
+    if (!userName || score === undefined || !difficulty) {
+        return res.status(400).json({ message: 'User name, score, and difficulty are required' });
+    }
+
+    // Prepare the new entry
+    const newEntry = `${userName},${score},${difficulty}\n`;
+
+    // Append the new entry to the CSV file
+    fs.appendFile(csvFilePath1, newEntry, (err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error writing to CSV file' });
+        }
+        res.status(200).json({ message: 'Quiz results submitted successfully!' });
+    });
+});
 
 // Start the server
 app.listen(PORT, () => {
