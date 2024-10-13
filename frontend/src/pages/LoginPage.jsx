@@ -8,16 +8,24 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
+  
+  const navigate = useNavigate(); // Add navigation if needed after successful login
 
   useEffect(() => {
     const loadUsersFromCSV = () => {
-      fetch("/user.csv") 
-        .then((response) => response.text())
+      fetch(`/user.csv?t=${new Date().getTime()}`) // Append timestamp to prevent caching
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
         .then((data) => {
           Papa.parse(data, {
             header: true,
             complete: (result) => {
               setUsers(result.data);
+              console.log(result.data); // Log users to see the structure
             },
           });
         })
@@ -32,13 +40,15 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    // Check the headers of the CSV file and adjust accordingly
     const user = users.find(
-      (u) => u.name === username && u.password === password
+      (u) => u.name === username && u.password === password // Adjust 'u.user' to match the CSV header
     );
 
     if (user) {
       setError("");
-      alert("Login successful!"); 
+      alert("Login successful!");
+      navigate("/dashboard"); // Navigate to another page after login
     } else {
       setError("Invalid username or password");
     }
@@ -78,8 +88,7 @@ const Login = () => {
           >
             Login
           </button>
-          <p>Dont have an account?<Link to={"/register"}>Sign up</Link> </p>
-          
+          <p>Don't have an account? <Link to="/register">Sign up</Link></p>
         </form>
       </div>
     </div>
