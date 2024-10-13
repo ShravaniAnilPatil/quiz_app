@@ -9,6 +9,9 @@ import ResultPage from './pages/ResultPage';
 import ProfilePage from './pages/ProfilePage';
 import AdminDashboard from './pages/AdminDashboard';
 import CreateQuizForm from './pages/CreateQuizForm';
+import UserReport from './components/UserReport';
+import HomePage from './pages/HomePage';
+
 
 function App() {
 
@@ -16,7 +19,7 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<UserDashboard/>} />
+      <Route path="/" element={<HomePage/>} />
       <Route path="/login" element={<LoginPage/>} />
       <Route path="/level-selection" element={<LevelSelection/>}/>
       <Route path="/result" element={<ResultPage/>}/>
@@ -24,6 +27,7 @@ function App() {
       <Route path='/profile' element={<ProfilePage/>}/>
       <Route path='/admin' element={<AdminDashboard/>}/>
       <Route path='/admin/create-quiz' element={<CreateQuizForm/>}/>
+      <Route path='/report' element={<UserReport/>}/>
 
 
      
