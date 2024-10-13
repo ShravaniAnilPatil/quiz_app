@@ -9,11 +9,11 @@ const Login = () => {
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
   
-  const navigate = useNavigate(); // Add navigation if needed after successful login
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const loadUsersFromCSV = () => {
-      fetch(`/user.csv?t=${new Date().getTime()}`) // Append timestamp to prevent caching
+      fetch(`/user.csv?t=${new Date().getTime()}`) 
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -42,13 +42,13 @@ const Login = () => {
 
     // Check the headers of the CSV file and adjust accordingly
     const user = users.find(
-      (u) => u.name === username && u.password === password // Adjust 'u.user' to match the CSV header
+      (u) => u.name === username && u.password === password 
     );
 
     if (user) {
       setError("");
       alert("Login successful!");
-      navigate("/dashboard"); // Navigate to another page after login
+      navigate("/level-selection"); 
     } else {
       setError("Invalid username or password");
     }
