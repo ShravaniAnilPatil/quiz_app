@@ -1,54 +1,50 @@
-import React, { useState, useEffect } from "react";
-import Papa from "papaparse"; 
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const loadUsersFromCSV = () => {
-      fetch("/user.csv") 
-        .then((response) => response.text())
-        .then((data) => {
-          Papa.parse(data, {
-            header: true,
-            complete: (result) => {
-              setUsers(result.data);
-            },
-          });
-        })
-        .catch((error) => {
-          console.error("Error loading the CSV file:", error);
-        });
-    };
-
-    loadUsersFromCSV();
-  }, []);
-
-  const handleLogin = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    const user = users.find(
-      (u) => u.name === username && u.password === password
-    );
+    // Validate input
+    if (!username || !password) {
+      setError("Username and password are required");
+      return;
+    }
 
-    if (user) {
-      setError("");
-      alert("Login successful!"); 
-    } else {
-      setError("Invalid username or password");
+    // Register user via API
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        setUsername("");
+        setPassword("");
+        setError("");
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError("Error registering user");
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-        <form onSubmit={handleLogin} className="space-y-4">
+        <h1 className="text-2xl font-bold mb-6 text-center">Create new Account</h1>
+        <form onSubmit={handleRegister} className="space-y-4">
           <div>
             <label className="block text-gray-700">Username</label>
             <input
@@ -76,14 +72,11 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
           >
-            Login
+            Register
           </button>
-          <p>Dont have an account?<Link to={"/register"}>Sign up</Link> </p>
-          
+          <p>Already have an account? <Link to={"/login"}>Login</Link></p>
         </form>
       </div>
     </div>
   );
-};
-
-export default Login;
+}

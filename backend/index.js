@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // CSV file path
-const csvFilePath = path.join(__dirname, '../frontend/public/user.csv');
+const csvFilePath = path.join(__dirname, 'public', 'user.csv');
 
 // Endpoint to register a new user
 app.post('/register', (req, res) => {
@@ -32,7 +32,7 @@ app.post('/register', (req, res) => {
         // Split CSV into rows
         const users = data.split('\n').slice(1).map(line => {
             const [user, pass] = line.split(',');
-            return { user: user, password: pass };
+            return { username: user, password: pass };
         });
 
         // Check for duplicate usernames

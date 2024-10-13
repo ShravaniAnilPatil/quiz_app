@@ -1,40 +1,40 @@
 const mathData = {
-    Easy: [
-      { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correctAnswer: "4" },
-      { question: "What is 5 - 3?", options: ["1", "2", "3", "4"], correctAnswer: "2" },
-      { question: "What is 10 / 2?",options: ["2", "3", "5", "7"], correctAnswer: "5" },
-      { question: "What is 3 * 3?", options: ["6", "7", "8", "9"], correctAnswer: "9" },
-      { question: "What is 7 + 1?", options: ["6", "7", "8", "9"], correctAnswer: "8" },
-      { question: "What is 6 - 2?", options: ["2", "3", "4", "5"], correctAnswer: "4" },
-      { question: "What is 8 / 4?", options: ["1", "2", "3", "4"], correctAnswer: "2" },
-      { question: "What is 4 * 2?", options: ["6", "7", "8", "9"], correctAnswer: "8" },
-      { question: "What is 9 + 0?", options: ["8", "9", "10", "11"], correctAnswer: "9" },
-      { question: "What is 5 - 1?", options: ["3", "4", "5", "6"], correctAnswer: "4" }
-    ],
-    Medium: [
-      { question: "What is 12 + 15?", options: ["25", "26", "27", "28"], correctAnswer: "27" },
-      { question: "What is 20 - 8?", options: ["10", "11", "12", "13"], correctAnswer: "12" },
-      { question: "What is 15 / 3?", options: ["4", "5", "6", "7"], correctAnswer: "5" },
-      { question: "What is 7 * 6?", options: ["40", "41", "42", "43"], correctAnswer: "42" },
-      { question: "What is 18 + 7?", options: ["24", "25", "26", "27"], correctAnswer: "25" },
-      { question: "What is 30 - 12?", options: ["16", "17", "18", "19"], correctAnswer: "18" },
-      { question: "What is 24 / 4?", options: ["5", "6", "7", "8"], correctAnswer: "6" },
-      { question: "What is 9 * 3?", options: ["26", "27", "28", "29"], correctAnswer: "27" },
-      { question: "What is 14 + 9?", options: ["22", "23", "24", "25"], correctAnswer: "23" },
-      { question: "What is 21 - 7?", options: ["12", "13", "14", "15"], correctAnswer: "14" }
-    ],
-    Hard: [
-      { question: "What is 45 + 36?", options: ["80", "81", "82", "83"], correctAnswer: "81" },
-      { question: "What is 56 - 19?", options: ["36", "37", "38", "39"], correctAnswer: "37" },
-      { question: "What is 72 / 8?", options: ["8", "9", "10", "11"], correctAnswer: "9" },
-      { question: "What is 13 * 7?", options: ["90", "91", "92", "93"], correctAnswer: "91" },
-      { question: "What is 64 + 29?", options: ["92", "93", "94", "95"], correctAnswer: "93" },
-      { question: "What is 81 - 23?", options: ["56", "57", "58", "59"], correctAnswer: "58" },
-      { question: "What is 99 / 11?", options: ["8", "9", "10", "11"], correctAnswer: "9" },
-      { question: "What is 17 * 5?", options: ["84", "85", "86", "87"], correctAnswer: "85" },
-      { question: "What is 78 + 15?", options: ["92", "93", "94", "95"], correctAnswer: "93" },
-      { question: "What is 100 - 45?", options: ["54", "55", "56", "57"], correctAnswer: "55" }
-    ]
-  }
-  
-  export default mathData
+  Easy: [
+    { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correctAnswer: "4" },
+    { question: "What is the capital of France?", options: ["London", "Paris", "Berlin", "Rome"], correctAnswer: "Paris" },
+    { question: "Which planet is closest to the Sun?", options: ["Mars", "Earth", "Venus", "Mercury"], correctAnswer: "Mercury" },
+    { question: "What is the boiling point of water?", options: ["90°C", "100°C", "80°C", "120°C"], correctAnswer: "100°C" },
+    { question: "Which color is a banana when ripe?", options: ["Red", "Yellow", "Green", "Blue"], correctAnswer: "Yellow" },
+    { question: "How many days are there in a week?", options: ["5", "6", "7", "8"], correctAnswer: "7" },
+    { question: "What is the largest ocean on Earth?", options: ["Indian Ocean", "Atlantic Ocean", "Pacific Ocean", "Arctic Ocean"], correctAnswer: "Pacific Ocean" },
+    { question: "What shape has four equal sides?", options: ["Rectangle", "Triangle", "Square", "Circle"], correctAnswer: "Square" },
+    { question: "What animal is known as 'man's best friend'?", options: ["Cat", "Dog", "Horse", "Rabbit"], correctAnswer: "Dog" },
+    { question: "What is the color of an emerald?", options: ["Blue", "Green", "Yellow", "Red"], correctAnswer: "Green" }
+  ],
+  Medium: [
+    { question: "What is the square root of 144?", options: ["10", "11", "12", "13"], correctAnswer: "12" },
+    { question: "Who wrote 'Hamlet'?", options: ["Shakespeare", "Tolkien", "Austen", "Dickens"], correctAnswer: "Shakespeare" },
+    { question: "What is the chemical symbol for water?", options: ["H", "O", "H2", "H2O"], correctAnswer: "H2O" },
+    { question: "How many continents are there?", options: ["5", "6", "7", "8"], correctAnswer: "7" },
+    { question: "Which gas do plants absorb from the atmosphere?", options: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"], correctAnswer: "Carbon Dioxide" },
+    { question: "What is the longest river in the world?", options: ["Nile", "Amazon", "Yangtze", "Mississippi"], correctAnswer: "Nile" },
+    { question: "What is the hardest natural substance on Earth?", options: ["Iron", "Diamond", "Gold", "Silver"], correctAnswer: "Diamond" },
+    { question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Michelangelo", "Leonardo da Vinci", "Picasso"], correctAnswer: "Leonardo da Vinci" },
+    { question: "How many players are there on a soccer team?", options: ["9", "10", "11", "12"], correctAnswer: "11" },
+    { question: "What is the atomic number of carbon?", options: ["5", "6", "7", "8"], correctAnswer: "6" }
+  ],
+  Hard: [
+    { question: "What is the integral of sin(x) dx?", options: ["-cos(x)", "cos(x)", "tan(x)", "sec(x)"], correctAnswer: "-cos(x)" },
+    { question: "Who is the founder of Microsoft?", options: ["Steve Jobs", "Larry Page", "Bill Gates", "Elon Musk"], correctAnswer: "Bill Gates" },
+    { question: "Which country won the FIFA World Cup in 2018?", options: ["Brazil", "France", "Germany", "Argentina"], correctAnswer: "France" },
+    { question: "What is the capital of Australia?", options: ["Sydney", "Canberra", "Melbourne", "Brisbane"], correctAnswer: "Canberra" },
+    { question: "What is the smallest prime number?", options: ["0", "1", "2", "3"], correctAnswer: "2" },
+    { question: "Who developed the theory of relativity?", options: ["Newton", "Galileo", "Einstein", "Tesla"], correctAnswer: "Einstein" },
+    { question: "What is the speed of light in a vacuum?", options: ["3.0 x 10^8 m/s", "2.0 x 10^8 m/s", "1.5 x 10^8 m/s", "4.0 x 10^8 m/s"], correctAnswer: "3.0 x 10^8 m/s" },
+    { question: "What is the formula for calculating force?", options: ["F = m/v", "F = mv^2", "F = ma", "F = m/a"], correctAnswer: "F = ma" },
+    { question: "What is the chemical symbol for gold?", options: ["G", "Au", "Ag", "Hg"], correctAnswer: "Au" },
+    { question: "Which element has the atomic number 1?", options: ["Helium", "Hydrogen", "Oxygen", "Carbon"], correctAnswer: "Hydrogen" }
+  ]
+}
+
+export default mathData;

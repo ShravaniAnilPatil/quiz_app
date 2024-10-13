@@ -11,7 +11,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import CreateQuizForm from './pages/CreateQuizForm';
 import UserReport from './components/UserReport';
 import HomePage from './pages/HomePage';
-
+import Register from './pages/Register';
 
 function App() {
 
@@ -21,6 +21,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/login" element={<LoginPage/>} />
+      <Route path='/register' element={<Register/>}/>
       <Route path="/level-selection" element={<LevelSelection/>}/>
       <Route path="/result" element={<ResultPage/>}/>
       <Route path="/quizpage" element={<QuizPage/>}/>
