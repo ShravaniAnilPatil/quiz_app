@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import mathData from '../data/MathData'
 
 const levels = ['Easy', 'Medium', 'Hard']
-const quizName = "Math"
+const quizName = "General Knowledge"
 
 export default function LevelSelection() {
   const [selectedLevel, setSelectedLevel] = useState(null)
@@ -21,7 +21,8 @@ export default function LevelSelection() {
 
   const startQuiz = () => {
     const questions = mathData[selectedLevel]
-    navigate(`/quizpage?level=${selectedLevel}`, { state: { questions } })
+    navigate(`/quizpage?level=${selectedLevel}`, { state: { questions,selectedLevel } })
+    console.log(selectedLevel);
   }
 
   return (
