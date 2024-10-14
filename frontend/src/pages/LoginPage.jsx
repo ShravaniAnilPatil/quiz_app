@@ -40,19 +40,20 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Check the headers of the CSV file and adjust accordingly
+   
     const user = users.find(
-      (u) => u.name === username && u.password === password 
+      (u) => u.name.trim() === username.trim() && u.password.trim() === password.trim() 
     );
 
     if (user) {
       setError("");
       alert("Login successful!");
-      navigate("/level-selection"); 
+      navigate("/user-dashboard"); 
     } else {
       setError("Invalid username or password");
     }
   };
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
