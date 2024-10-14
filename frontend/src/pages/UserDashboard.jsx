@@ -1,41 +1,59 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import Papa from 'papaparse'; 
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
   const [userData, setUserData] = useState({
-    name: 'John Doe',
-    totalQuizzes: 10,
-    averageScore: 85
-  })
-  const subjects = ['Math', 'Science', 'History', 'Literature']
+    name: '',
+    totalQuizzes: 0,
+    averageScore: 0
+  });
+
+  const subjects = ['Math', 'Science', 'History', 'Literature'];
 
   useEffect(() => {
-    const fetchUserData = async () => {
-    //   try {
-    //     const response = await fetch('/api/user-data', {
-    //       headers: {
-    //         'Authorization': `Bearer ${localStorage.getItem('token')}`
-    //       }
-    //     })
-    //     if (response.ok) {
-    //       const data = await response.json()
-    //       setUserData(data)
-    //     } else {
-    //       alert("Failed to fetch user data. Please try again.")
-    //     }
-    //   } catch (error) {
-    //     console.error('Fetch user data error:', error)
-    //     alert("An unexpected error occurred. Please try again later.")
-    //   }
+    
+    const username = localStorage.getItem('username'); 
+
+    if (username) {
+      setUserData(prevState => ({
+        ...prevState,
+        name: username
+      }));
     }
+   
+    const fetchUserDataFromCSV = () => {
+      fetch(`/user_scores.csv?t=${new Date().getTime()}`) 
+        .then((response) => response.text())
+        .then((data) => {
+          Papa.parse(data, {
+            header: true, 
+            complete: (result) => {
+             
+              const userRecord = result.data.find((u) => u.name.trim() === username.trim());
 
-    fetchUserData()
-  }, [])
+              if (userRecord) {
+                setUserData({
+                  name: userRecord.name,
+                  totalQuizzes: parseInt(userRecord.totalQuizzes, 10) || 0,
+                  averageScore: parseFloat(userRecord.averageScore) || 0
+                });
+              }
+            },
+            error: (err) => {
+              console.error("Error reading the CSV file", err);
+            }
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching the CSV file:', error);
+        });
+    };
 
-//   if (!userData) {
-//     return <div>Loading...</div>
-//   }
+    fetchUserDataFromCSV();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -69,6 +87,7 @@ export default function UserDashboard() {
           </div>
         </div>
       </div>
+      
       <div className="bg-white shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-2">Select a Subject</h2>
         <p className="text-gray-500 mb-6">Choose the subject you want to be quizzed on</p>
@@ -85,5 +104,5 @@ export default function UserDashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }

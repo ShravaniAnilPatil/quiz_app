@@ -47,6 +47,7 @@ const Login = () => {
 
     if (user) {
       setError("");
+      localStorage.setItem("username",user.name)
       alert("Login successful!");
       navigate("/user-dashboard"); 
     } else {
