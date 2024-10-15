@@ -20,15 +20,20 @@ console.log(selectedLevel)
     try {
       const response = await fetch('/user_scores.csv'); // Adjust this path if needed
       const csvText = await response.text();
-  
+      console.log(selectedLevel);
+            console.log("**********");
+            console.log(csvText)
       // Use PapaParse to parse the CSV data
       Papa.parse(csvText, {
         header: true,
         complete: (result) => {
           const data = result.data
-            .filter(
-              (entry) => entry.userName && entry.score && entry.difficulty // Ensure difficulty exists
-            )
+          .filter(
+            (entry) => entry.userName && entry.difficulty && entry.score != undefined && entry.score != null
+          )
+          
+          
+            
             .map((entry) => ({
               ...entry,
               score: parseInt(entry.score, 10), // Convert score to number
@@ -36,9 +41,13 @@ console.log(selectedLevel)
             .filter(
               (entry) =>
                 entry.difficulty &&
-                entry.difficulty.toLowerCase() === selectedLevel.toLowerCase() // Filter by selectedLevel
+                entry.difficulty == selectedLevel // Filter by selectedLevel
             );
-  
+            console.log("^^^^^^^^");
+            
+            console.log(selectedLevel)
+  console.log("&&&&&&");
+  console.log(data)
           // Sort by score in descending order
           const sortedData = data.sort((a, b) => b.score - a.score);
   

@@ -10,19 +10,31 @@ export default function QuizPage() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [isCorrect, setIsCorrect] = useState(null); 
   const [correctAnswers, setCorrectAnswers] = useState(0); 
-
+  const username = localStorage.getItem("username");
   const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
   const { questions,selectedLevel } = state || {};
 
   useEffect(() => {
+    fetchQuizData(); // Fetch quiz data when the component mounts
     if (questions) {
       setQuizData(questions);
     } else {
       setQuizData(mathQuizData.Easy); 
     }
   }, [questions]);
+
+  const fetchQuizData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/get-quiz-data'); // Adjust your API endpoint
+      const data = await response.json();
+      setSubmittedData(data); // Store the fetched data
+    } catch (error) {
+      console.error('Error fetching quiz data:', error);
+    }
+  };
+
 
   const handleNext = () => {
     const correctAnswer = quizData[currentQuestion].correctAnswer;
@@ -46,9 +58,31 @@ export default function QuizPage() {
 
   const submitQuiz = () => {
     const score = Math.round((correctAnswers / quizData.length) * 10);
-    navigate(`/result?score=${score}` ,{state:{selectedLevel}});
-    console.log(selectedLevel)
+  
+    // Send data to the Express backend
+    const quizResult = {
+      userName: username || "Guest", // Fallback if username is not provided
+      score,
+      difficulty: selectedLevel || "Easy"
+    };
+  
+    fetch('http://localhost:5000/submit-quiz', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(quizResult),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        navigate(`/result?score=${score}`, { state: { selectedLevel } });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
+  
   if (quizData.length === 0) {
     return <div>Loading...</div>;
   }
