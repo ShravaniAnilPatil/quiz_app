@@ -9,9 +9,12 @@ export default function ResultPage() {
   const { selectedLevel } = location.state || {}; // Retrieve selectedLevel from state
 console.log(selectedLevel)
   // Mock result data
-  const score = 8;
-  const totalQuestions = 10;
-
+  // const score = 8;
+  // const totalQuestions = 10;
+  
+  const queryParams = new URLSearchParams(location.search);
+  const score = parseInt(queryParams.get('score')) || 0; 
+  const totalQuestions = 10; 
   // Function to fetch and parse the leaderboard CSV
   const fetchLeaderboardData = async () => {
     try {
