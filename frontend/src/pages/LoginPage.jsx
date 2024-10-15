@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Papa from "papaparse"; 
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import Papa from "papaparse";
+import { useNavigate, Link } from "react-router-dom"; // Combined imports
+import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
   
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadUsersFromCSV = () => {
@@ -25,7 +25,6 @@ const Login = () => {
             header: true,
             complete: (result) => {
               setUsers(result.data);
-              console.log(result.data); // Log users to see the structure
             },
           });
         })
@@ -37,24 +36,38 @@ const Login = () => {
     loadUsersFromCSV();
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-   
     const user = users.find(
       (u) => u.name.trim() === username.trim() && u.password.trim() === password.trim() 
     );
 
     if (user) {
       setError("");
-      localStorage.setItem("username",user.name)
-      alert("Login successful!");
-      navigate("/user-dashboard"); 
+      localStorage.setItem("username", user.name);
+
+      const quizData = {
+        correctAnswers: 0,  
+        incorrectAnswers: 0,  
+      };
+
+      try {
+        const response = await axios.post('http://localhost:5000/api/update-user', {
+          username,
+          quizData,
+        });
+        console.log('User report updated successfully:', response.data);
+        alert("Login successful!");
+        navigate("/user-dashboard"); 
+      } catch (error) {
+        console.error('Error updating user report:', error);
+      }
+      
     } else {
       setError("Invalid username or password");
     }
   };
-
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
