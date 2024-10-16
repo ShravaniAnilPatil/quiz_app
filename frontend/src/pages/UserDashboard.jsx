@@ -4,41 +4,44 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
   const navigate = useNavigate();
-  
+
   const [userData, setUserData] = useState({
     name: '',
     totalQuizzes: 0,
     averageScore: 0
   });
-
-  const subjects = ['Math', 'Science', 'History', 'Literature'];
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    
     const username = localStorage.getItem('username'); 
-
     if (username) {
       setUserData(prevState => ({
         ...prevState,
         name: username
       }));
     }
-   
+
+    // Fetch user data from CSV for user statistics
     const fetchUserDataFromCSV = () => {
-      fetch(`/user_scores.csv?t=${new Date().getTime()}`) 
+      fetch(`/quiz_results.csv?t=${new Date().getTime()}`) // Correct the file name (fixed typo)
         .then((response) => response.text())
         .then((data) => {
           Papa.parse(data, {
-            header: true, 
+            header: true,
+            skipEmptyLines: true,
             complete: (result) => {
-             
-              const userRecord = result.data.find((u) => u.name.trim() === username.trim());
+              // Ensure correct field names are being used (userName and score)
+              const userQuizzes = result.data.filter((row) => row.userName.trim() === username.trim());
 
-              if (userRecord) {
+              if (userQuizzes.length > 0) {
+                const totalQuizzes = userQuizzes.length;
+                const totalScore = userQuizzes.reduce((acc, quiz) => acc + parseFloat(quiz.score || 0), 0);
+                const averageScore = (totalScore / totalQuizzes).toFixed(2);
+
                 setUserData({
-                  name: userRecord.name,
-                  totalQuizzes: parseInt(userRecord.totalQuizzes, 10) || 0,
-                  averageScore: parseFloat(userRecord.averageScore) || 0
+                  name: username,
+                  totalQuizzes,
+                  averageScore
                 });
               }
             },
@@ -52,7 +55,31 @@ export default function UserDashboard() {
         });
     };
 
+    // Fetch the questions CSV for subject list
+    const fetchSubjectsFromCSV = () => {
+      fetch(`/questions.csv?t=${new Date().getTime()}`) 
+        .then((response) => response.text())
+        .then((data) => {
+          Papa.parse(data, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (result) => {
+              // Get unique subjects (assuming 'subject' field exists in the questions CSV)
+              const uniqueSubjects = [...new Set(result.data.map((question) => question.subject).filter(subject => subject.trim() !== ""))];
+              setSubjects(uniqueSubjects); 
+            },
+            error: (err) => {
+              console.error("Error reading the CSV file", err);
+            }
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching the CSV file:', error);
+        });
+    };
+
     fetchUserDataFromCSV();
+    fetchSubjectsFromCSV(); 
   }, []);
 
   return (
@@ -96,7 +123,7 @@ export default function UserDashboard() {
             <button
               key={subject}
               className="bg-blue-500 text-white w-full h-24 text-lg rounded hover:bg-blue-600 transition"
-              onClick={() => navigate(`/level-selection?subject=${subject}`)}
+              onClick={() => navigate(`/level-selection?subject=${subject}`, { state: { subject } })}
             >
               {subject}
             </button>
