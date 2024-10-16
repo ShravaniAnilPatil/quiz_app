@@ -1,4 +1,16 @@
 userName,score,difficulty,subject
 pranav,1,Easy,Math
 pranav,0,Easy,Math
-
+john,90,Easy,Math
+john,80,Easy,Science
+john,10,Easy,Science
+john,80,Medium,Math
+john,90,Easy,Math
+pranav,100,Easy,Math
+pranav,90,Easy,Math
+pranav,100,Easy,Math
+pranav,70,Medium,Science
+pranav,90,Medium,Science
+pranav,100,Medium,Science
+pranav,30,Easy,Math
+pranav,30,Easy,Math

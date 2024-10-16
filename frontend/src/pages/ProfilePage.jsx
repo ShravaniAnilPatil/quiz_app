@@ -47,42 +47,49 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-4">User Profile</h2>
-        <p className="text-gray-600">Your account details and quiz history</p>
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-purple-600">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full">
+        <h2 className="text-3xl font-extrabold mb-4 text-center text-gray-800">User Profile</h2>
+        <p className="text-gray-600 text-center mb-6">View your account details and quiz history below</p>
 
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold">Account Information</h3>
-          <p>Name: {userData.name}</p>
-          {/* <p>Email: {userData.email}</p> */}
+        <div className="mb-6">
+          <h3 className="text-2xl font-semibold text-gray-700 mb-4">Account Information</h3>
+          <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
+            <p className="text-lg text-gray-700"><strong>Name:</strong> {userData.name}</p>
+            {/* <p>Email: {userData.email}</p> */}
+          </div>
         </div>
 
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold">Quiz History</h3>
-          <div className="overflow-x-auto">
-            <table className="min-w-full table-auto bg-white border-collapse border border-gray-200">
-              <caption className="text-lg text-gray-700 mb-2">Your recent quiz attempts</caption>
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="border px-4 py-2 text-left">Date</th>
-                  <th className="border px-4 py-2 text-left">Subject</th>
-                  <th className="border px-4 py-2 text-left">Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userData.quizHistory.map((quiz, index) => (
-                  <tr key={index}>
-                    <td className="border px-4 py-2">{quiz.date}</td>
-                    <td className="border px-4 py-2">{quiz.subject}</td>
-                    <td className="border px-4 py-2">
-                      {quiz.score}/{quiz.totalQuestions}
-                    </td>
+        <div>
+          <h3 className="text-2xl font-semibold text-gray-700 mb-4">Quiz History</h3>
+          {userData.quizHistory.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                <caption className="text-lg text-gray-700 mb-2 text-left">Your Recent Quiz Attempts</caption>
+                <thead>
+                  <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <th className="py-3 px-6 text-left">Date</th>
+                    <th className="py-3 px-6 text-left">Subject</th>
+                    <th className="py-3 px-6 text-left">Score</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="text-gray-600 text-sm font-light">
+                  {userData.quizHistory.map((quiz, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-200 hover:bg-gray-100 transition-colors duration-200"
+                    >
+                      <td className="py-3 px-6 text-left">{quiz.date}</td>
+                      <td className="py-3 px-6 text-left">{quiz.subject}</td>
+                      <td className="py-3 px-6 text-left">{quiz.score}/{quiz.totalQuestions}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-lg text-gray-500 text-center">No quiz history available.</p>
+          )}
         </div>
       </div>
     </div>

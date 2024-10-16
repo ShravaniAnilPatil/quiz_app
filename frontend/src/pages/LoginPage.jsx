@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
-import { useNavigate, Link } from "react-router-dom"; // Combined imports
-import axios from 'axios';
+import { useNavigate, Link } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa"; // Added icons
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadUsersFromCSV = () => {
-      fetch(`/user.csv?t=${new Date().getTime()}`) 
+      fetch(`/user.csv?t=${new Date().getTime()}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -36,11 +36,11 @@ const Login = () => {
     loadUsersFromCSV();
   }, []);
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
     const user = users.find(
-      (u) => u.name.trim() === username.trim() && u.password.trim() === password.trim() 
+      (u) => u.name.trim() === username.trim() && u.password.trim() === password.trim()
     );
 
     if (user) {
@@ -48,62 +48,66 @@ const Login = () => {
       localStorage.setItem("username", user.name);
 
       const quizData = {
-        correctAnswers: 0,  
-        incorrectAnswers: 0,  
+        correctAnswers: 0,
+        incorrectAnswers: 0,
       };
 
-      try {
-        const response = await axios.post('http://localhost:5000/api/update-user', {
-          username,
-          quizData,
-        });
-        console.log('User report updated successfully:', response.data);
-        alert("Login successful!");
-        navigate("/user-dashboard"); 
-      } catch (error) {
-        console.error('Error updating user report:', error);
-      }
-      
+      localStorage.setItem("quizData", JSON.stringify(quizData));
+
+      console.log("User report stored successfully:", quizData);
+      alert("Login successful!");
+      navigate("/user-dashboard");
     } else {
       setError("Invalid username or password");
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label className="block text-gray-700">Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your username"
-              required
-            />
+    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-purple-400 via-blue-300 to-blue-200">
+      <div className="bg-white p-10 rounded-2xl shadow-2xl max-w-sm w-full transform transition-all duration-300 hover:scale-105">
+        <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-800">Login</h1>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div className="relative">
+            <label className="block text-gray-600 mb-2 font-semibold">Username</label>
+            <div className="flex items-center border rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-purple-400">
+              <FaUser className="text-gray-400 mr-2" />
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full outline-none"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
           </div>
-          <div>
-            <label className="block text-gray-700">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your password"
-              required
-            />
+          <div className="relative">
+            <label className="block text-gray-600 mb-2 font-semibold">Password</label>
+            <div className="flex items-center border rounded-lg px-4 py-2 focus-within:ring-2 focus-within:ring-purple-400">
+              <FaLock className="text-gray-400 mr-2" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full outline-none"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
           </div>
-          {error && <p className="text-red-500">{error}</p>}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+            className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 rounded-lg text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg"
           >
             Login
           </button>
-          <p>Don't have an account? <Link to="/register">Sign up</Link></p>
+          <p className="text-center text-gray-600">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-purple-600 hover:underline">
+              Sign up
+            </Link>
+          </p>
         </form>
       </div>
     </div>

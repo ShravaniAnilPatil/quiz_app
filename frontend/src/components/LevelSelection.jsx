@@ -20,41 +20,42 @@ export default function LevelSelection() {
   };
 
   const startQuiz = () => {
-    navigate(`/quizpage`, { state: { selectedLevel, subject } }); // Pass both subject and level to the quiz page
+    navigate(`/quizpage`, { state: { selectedLevel, subject } });
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">Select Level for {subject} Quiz</h1>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 to-purple-500">
+      <h1 className="text-4xl font-extrabold text-white mb-8">Select Difficulty Level for {subject} Quiz</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {levels.map((level) => (
           <button
             key={level}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+            className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-4 rounded-lg text-lg font-semibold shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
             onClick={() => openModal(level)}
           >
             {level}
           </button>
         ))}
       </div>
+
       {isModalOpen && (
-        <div>
-          <div className="flex justify-center my-5">
-            <h2 className="text-xl font-bold mb-4">Confirm Level: {selectedLevel}</h2>
-          </div>
-          <div className="flex justify-center">
-            <button
-              className="bg-green-500 text-white px-4 py-2 mx-4 rounded hover:bg-green-600 transition"
-              onClick={startQuiz}
-            >
-              Start Quiz
-            </button>
-            <button
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-              onClick={closeModal}
-            >
-              Cancel
-            </button>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl text-center">
+            <h2 className="text-2xl font-bold mb-4">Confirm Difficulty: {selectedLevel}</h2>
+            <div className="flex justify-center">
+              <button
+                className="bg-green-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-600 transition-all duration-200 shadow-md mx-2"
+                onClick={startQuiz}
+              >
+                Start Quiz
+              </button>
+              <button
+                className="bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition-all duration-200 shadow-md mx-2"
+                onClick={closeModal}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}

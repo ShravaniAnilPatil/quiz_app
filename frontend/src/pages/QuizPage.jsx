@@ -31,12 +31,10 @@ export default function QuizPage() {
             const questions = result.data.filter(
               (q) => q.subject === subject && q.level === level
             );
-            // Ensure options are parsed as arrays
             const formattedQuestions = questions.map((q) => ({
               ...q,
-              options: q.options ? q.options.split('|') : []
+              options: q.options ? q.options.split("|") : [],
             }));
-            console.log(formattedQuestions);
             setQuizData(formattedQuestions);
           },
           error: (err) => {
@@ -72,7 +70,7 @@ export default function QuizPage() {
   };
 
   const submitQuiz = () => {
-    const score = Math.round((correctAnswers / (quizData.length)) * 100);
+    const score = Math.round((correctAnswers / quizData.length) * 100);
 
     const quizResult = {
       userName: localStorage.getItem("username") || "Guest",
@@ -90,55 +88,61 @@ export default function QuizPage() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to submit quiz');
+          throw new Error("Failed to submit quiz");
         }
         return response.json();
       })
       .then((data) => {
-        
-        console.log('Success:', data);
         navigate(`/result?score=${score}`, {
           state: { subject, selectedLevel },
         });
       })
       .catch((error) => {
-        console.error("Error submitting quiz:", error);
         alert("Failed to submit quiz. Please try again later.");
       });
-    
   };
 
   if (quizData.length === 0) {
-    return <div>Loading...</div>;
+    return <div className="text-center py-10">Loading...</div>;
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-2">
+    <div className="container mx-auto px-4 py-10">
+      <div className="bg-gray-50 shadow-md rounded-lg p-8 max-w-2xl mx-auto">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Question {currentQuestion + 1}
         </h2>
-        <p className="text-gray-500 mb-6">
+        <p className="text-gray-600 text-lg mb-6">
           {quizData[currentQuestion].question}
         </p>
-        <div className="mb-4">
+        <div className="space-y-3 mb-6">
           {Array.isArray(quizData[currentQuestion].options) &&
             quizData[currentQuestion].options.map((option, index) => (
-              <div key={index} className="flex items-center space-x-2 mb-2">
+              <div
+                key={index}
+                className={`flex items-center p-3 rounded-md shadow-sm cursor-pointer transition ${
+                  selectedAnswer === option
+                    ? "bg-blue-100 border-blue-500"
+                    : "bg-white border-gray-300"
+                } border`}
+                onClick={() => setSelectedAnswer(option)}
+              >
                 <input
                   type="radio"
                   name="quiz-option"
                   id={`option-${index}`}
                   value={option}
                   checked={selectedAnswer === option}
-                  onChange={() => setSelectedAnswer(option)}
-                  className="text-blue-500 focus:ring-blue-400"
+                  className="hidden"
                 />
-                <label htmlFor={`option-${index}`} className="text-gray-700">
+                <label
+                  htmlFor={`option-${index}`}
+                  className="ml-3 text-gray-700 font-medium"
+                >
                   {option}
                 </label>
                 {selectedAnswer && option === selectedAnswer && (
-                  <span className="ml-2">
+                  <span className="ml-auto">
                     {isCorrect === null ? null : isCorrect &&
                       option === quizData[currentQuestion].correctAnswer ? (
                       <FaCheck className="text-green-500" />
@@ -150,13 +154,15 @@ export default function QuizPage() {
               </div>
             ))}
         </div>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-          onClick={handleNext}
-          disabled={!selectedAnswer}
-        >
-          {currentQuestion === quizData.length - 1 ? "Finish" : "Next"}
-        </button>
+        <div className="text-right">
+          <button
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            onClick={handleNext}
+            disabled={!selectedAnswer}
+          >
+            {currentQuestion === quizData.length - 1 ? "Finish" : "Next"}
+          </button>
+        </div>
       </div>
     </div>
   );

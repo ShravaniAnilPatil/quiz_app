@@ -10,7 +10,7 @@ export default function ResultPage() {
   
   const queryParams = new URLSearchParams(location.search);
   const score_x = parseInt(queryParams.get('score')) || 0; 
-  const score = score_x/100
+  const score = score_x/10
 
   const totalQuestions = 10; 
 
