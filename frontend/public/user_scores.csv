@@ -1,4 +1,12 @@
-userName,score,difficulty
-john,4,Medium
-alice,5,Easy
-rujuta,3,Hard
+userName,score,difficulty,subject
+john,4,Medium,Math
+rujuta,3,Hard,Science
+john,1,Easy,Math
+pranav,9,Easy,History
+pranav,1,Easy,History
+pranav,9,Easy,History
+pranav,8,Easy,History
+pranav,0,Easy,History
+pranav,8,Easy,Literature
+alice,8,Easy,English
+alice,8,Easy,English

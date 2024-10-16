@@ -1,0 +1,132 @@
+subject,level,question,options,correctAnswer
+Math,Easy,What is 2 + 2?,"3|4|5|6",4
+Math,Easy,What is the capital of France?,"London|Paris|Berlin|Rome",Paris
+Math,Easy,Which planet is closest to the Sun?,"Mars|Earth|Venus|Mercury",Mercury
+Math,Easy,What is the boiling point of water?,"90°C|100°C|80°C|120°C",100°C
+Math,Easy,Which color is a banana when ripe?,"Red|Yellow|Green|Blue",Yellow
+Math,Easy,How many days are there in a week?,"5|6|7|8",7
+Math,Easy,What is the largest ocean on Earth?,"Indian Ocean|Atlantic Ocean|Pacific Ocean|Arctic Ocean",Pacific Ocean
+Math,Easy,What shape has four equal sides?,"Rectangle|Triangle|Square|Circle",Square
+Math,Easy,What animal is known as 'man's best friend'?,"Cat|Dog|Horse|Rabbit",Dog
+Math,Easy,What is the color of an emerald?,"Blue|Green|Yellow|Red",Green
+
+Math,Medium,What is the square root of 144?,"10|11|12|13",12
+Math,Medium,Who wrote 'Hamlet'?,"Shakespeare|Tolkien|Austen|Dickens",Shakespeare
+Math,Medium,What is the chemical symbol for water?,"H|O|H2|H2O",H2O
+Math,Medium,How many continents are there?,"5|6|7|8",7
+Math,Medium,Which gas do plants absorb from the atmosphere?,"Oxygen|Hydrogen|Nitrogen|Carbon Dioxide",Carbon Dioxide
+Math,Medium,What is the longest river in the world?,"Nile|Amazon|Yangtze|Mississippi",Nile
+Math,Medium,What is the hardest natural substance on Earth?,"Iron|Diamond|Gold|Silver",Diamond
+Math,Medium,Who painted the Mona Lisa?,"Vincent van Gogh|Michelangelo|Leonardo da Vinci|Picasso",Leonardo da Vinci
+Math,Medium,How many players are there on a soccer team?,"9|10|11|12",11
+Math,Medium,What is the atomic number of carbon?,"5|6|7|8",6
+
+Math,Hard,What is the integral of sin(x) dx?,"-cos(x)|cos(x)|tan(x)|sec(x)",-cos(x)
+Math,Hard,Who is the founder of Microsoft?,"Steve Jobs|Larry Page|Bill Gates|Elon Musk",Bill Gates
+Math,Hard,Which country won the FIFA World Cup in 2018?,"Brazil|France|Germany|Argentina",France
+Math,Hard,What is the capital of Australia?,"Sydney|Canberra|Melbourne|Brisbane",Canberra
+Math,Hard,What is the smallest prime number?,"0|1|2|3",2
+Math,Hard,Who developed the theory of relativity?,"Newton|Galileo|Einstein|Tesla",Einstein
+Math,Hard,What is the speed of light in a vacuum?,"3.0 x 10^8 m/s|2.0 x 10^8 m/s|1.5 x 10^8 m/s|4.0 x 10^8 m/s","3.0 x 10^8 m/s"
+Math,Hard,What is the formula for calculating force?,"F = m/v|F = mv^2|F = ma|F = m/a","F = ma"
+Math,Hard,What is the chemical symbol for gold?,"G|Au|Ag|Hg",Au
+Math,Hard,Which element has the atomic number 1?,"Helium|Hydrogen|Oxygen|Carbon",Hydrogen
+
+Science,Easy,What is the primary gas in the Earth's atmosphere?,"Oxygen|Nitrogen|Hydrogen|Carbon Dioxide",Nitrogen
+Science,Easy,What does DNA stand for?,"Deoxyribonucleic acid|Dioxyribonucleic acid|Dioxyribose acid|Deoxyribose acid",Deoxyribonucleic acid
+Science,Easy,What is the chemical symbol for oxygen?,"O|O2|Ox|O3",O
+Science,Easy,What is the process by which plants make their food?,"Respiration|Photosynthesis|Germination|Fermentation",Photosynthesis
+Science,Easy,Which planet is known as the Red Planet?,"Earth|Venus|Mars|Jupiter",Mars
+Science,Easy,Which part of the human body controls movement and coordination?,"Heart|Liver|Brain|Kidney",Brain
+Science,Easy,What is the unit of force in the SI system?,"Newton|Joule|Pascal|Watt",Newton
+Science,Easy,What is the closest star to Earth?,"Proxima Centauri|Sirius|Alpha Centauri|The Sun",The Sun
+Science,Easy,What gas do humans exhale?,"Oxygen|Hydrogen|Nitrogen|Carbon Dioxide",Carbon Dioxide
+Science,Easy,What is the boiling point of water in Fahrenheit?,"212°F|100°F|32°F|180°F",212°F
+
+Science,Medium,What is the chemical symbol for sodium?,"S|Na|K|N",Na
+Science,Medium,Who developed the theory of evolution?,"Darwin|Einstein|Newton|Hawking",Darwin
+Science,Medium,What is the atomic number of oxygen?,"6|7|8|9",8
+Science,Medium,What is the process of water changing from liquid to gas called?,"Melting|Freezing|Evaporation|Condensation",Evaporation
+Science,Medium,What is the second largest planet in our solar system?,"Jupiter|Saturn|Earth|Mars",Saturn
+Science,Medium,Which vitamin is produced by the skin when exposed to sunlight?,"Vitamin A|Vitamin B|Vitamin C|Vitamin D",Vitamin D
+Science,Medium,What is the chemical formula for table salt?,"H2O|NaCl|CO2|O2",NaCl
+Science,Medium,Which part of the cell contains genetic material?,"Cytoplasm|Nucleus|Mitochondria|Ribosome",Nucleus
+Science,Medium,What is the most abundant element in the universe?,"Oxygen|Nitrogen|Hydrogen|Helium",Hydrogen
+Science,Medium,What is the largest bone in the human body?,"Femur|Tibia|Fibula|Humerus",Femur
+
+Science,Hard,What is the speed of light in a vacuum?,"3.0 x 10^8 m/s|2.0 x 10^8 m/s|1.5 x 10^8 m/s|4.0 x 10^8 m/s","3.0 x 10^8 m/s"
+Science,Hard,What is the formula for calculating force?,"F = m/v|F = mv^2|F = ma|F = m/a","F = ma"
+Science,Hard,What is the chemical symbol for gold?,"G|Au|Ag|Hg",Au
+Science,Hard,Which element has the atomic number 1?,"Helium|Hydrogen|Oxygen|Carbon",Hydrogen
+Science,Hard,Who developed the general theory of relativity?,"Isaac Newton|Galileo Galilei|Albert Einstein|Niels Bohr",Albert Einstein
+Science,Hard,What is the formula for calculating kinetic energy?,"KE = mv|KE = mv^2/2|KE = mv^2|KE = ma",KE = mv^2/2
+Science,Hard,What is the most abundant gas in the Earth's atmosphere?,"Oxygen|Hydrogen|Nitrogen|Carbon Dioxide",Nitrogen
+Science,Hard,What is the smallest unit of matter?,"Proton|Electron|Atom|Molecule",Atom
+Science,Hard,Which part of the atom has a positive charge?,"Proton|Neutron|Electron|Photon",Proton
+Science,Hard,What is the main element in the Sun?,"Helium|Oxygen|Nitrogen|Hydrogen",Hydrogen
+
+History,Easy,Who was the first President of the United States?,"George Washington|Thomas Jefferson|Abraham Lincoln|John Adams",George Washington
+History,Easy,In which year did World War I begin?,"1910|1914|1918|1920",1914
+History,Easy,Which country built the Great Wall of China?,"Japan|India|China|Mongolia",China
+History,Easy,Who was known as the 'Iron Lady'?,"Margaret Thatcher|Indira Gandhi|Angela Merkel|Hillary Clinton",Margaret Thatcher
+History,Easy,In which year did Christopher Columbus first arrive in the Americas?,"1490|1492|1494|1496",1492
+History,Easy,Who was the first man to step on the moon?,"Buzz Aldrin|Yuri Gagarin|John Glenn|Neil Armstrong",Neil Armstrong
+History,Easy,What year did the Titanic sink?,"1910|1912|1915|1918",1912
+History,Easy,Who discovered penicillin?,"Alexander Fleming|Marie Curie|Louis Pasteur|Joseph Lister",Alexander Fleming
+History,Easy,Who was the first woman to win a Nobel Prize?,"Marie Curie|Rosa Parks|Florence Nightingale|Ada Lovelace",Marie Curie
+History,Easy,Which US President was involved in the Watergate scandal?,"Richard Nixon|John F. Kennedy|Jimmy Carter|Ronald Reagan",Richard Nixon
+
+History,Medium,Who was the British Prime Minister during WWII?,"Neville Chamberlain|Winston Churchill|Clement Attlee|Margaret Thatcher",Winston Churchill
+History,Medium,What was the name of the ship that carried the Pilgrims to America?,"Santa Maria|Pinta|Mayflower|Victoria",Mayflower
+History,Medium,Who was the leader of the Soviet Union during WWII?,"Stalin|Lenin|Trotsky|Khrushchev",Stalin
+History,Medium,Which ancient civilization built the pyramids?,"Greek|Roman|Egyptian|Mayan",Egyptian
+History,Medium,Who was the first Emperor of Rome?,"Julius Caesar|Augustus|Nero|Constantine",Augustus
+History,Medium,In which year did India gain independence from Britain?,"1945|1947|1950|1952",1947
+History,Medium,Which US President abolished slavery?,"George Washington|Thomas Jefferson|Abraham Lincoln|Andrew Jackson",Abraham Lincoln
+History,Medium,What was the Roman name for Scotland?,"Caledonia|Britannia|Gaul|Hibernia",Caledonia
+History,Medium,Who was the last Tsar of Russia?,"Alexander II|Nicholas II|Ivan IV|Peter the Great",Nicholas II
+History,Medium,Which explorer is credited with discovering America?,"Magellan|Christopher Columbus|Marco Polo|Vasco da Gama",Christopher Columbus
+
+History,Hard,Who was the first President of the United States?,"George Washington|Thomas Jefferson|Abraham Lincoln|John Adams",George Washington
+History,Hard,Who was the first woman to win a Nobel Prize?,"Marie Curie|Rosa Parks|Florence Nightingale|Ada Lovelace",Marie Curie
+History,Hard,Who discovered penicillin?,"Alexander Fleming|Marie Curie|Louis Pasteur|Joseph Lister",Alexander Fleming
+History,Hard,Who was the first man to step on the moon?,"Buzz Aldrin|Yuri Gagarin|John Glenn|Neil Armstrong",Neil Armstrong
+History,Hard,Who discovered the theory of gravity?,"Isaac Newton|Galileo Galilei|Albert Einstein|Niels Bohr",Isaac Newton
+History,Hard,Which country did Hitler invade to start World War II?,"France|Belgium|Poland|Russia",Poland
+History,Hard,What year did the Titanic sink?,"1910|1912|1915|1918",1912
+History,Hard,Who was the first Emperor of Rome?,"Julius Caesar|Augustus|Nero|Constantine",Augustus
+History,Hard,Who was the British Prime Minister during WWII?,"Neville Chamberlain|Winston Churchill|Clement Attlee|Margaret Thatcher",Winston Churchill
+History,Hard,Who discovered the theory of evolution?,"Isaac Newton|Galileo Galilei|Charles Darwin|Albert Einstein",Charles Darwin
+
+Literature,Easy,Who wrote 'Harry Potter'?,"J.K. Rowling|George R.R. Martin|J.R.R. Tolkien|Stephen King",J.K. Rowling
+Literature,Easy,What is the title of the first 'Lord of the Rings' book?,"The Fellowship of the Ring|The Two Towers|The Return of the King|The Hobbit","The Fellowship of the Ring"
+Literature,Easy,Who wrote 'Pride and Prejudice'?,"Charlotte Bronte|Emily Bronte|Jane Austen|Louisa May Alcott",Jane Austen
+Literature,Easy,Who wrote 'Moby-Dick'?,"Mark Twain|Herman Melville|Charles Dickens|Victor Hugo",Herman Melville
+Literature,Easy,Who wrote 'To Kill a Mockingbird'?,"Ernest Hemingway|Harper Lee|F. Scott Fitzgerald|Mark Twain",Harper Lee
+Literature,Easy,Which Shakespeare play features the characters of Rosencrantz and Guildenstern?,"Hamlet|Macbeth|Romeo and Juliet|Othello",Hamlet
+Literature,Easy,Who wrote '1984'?,"George Orwell|Aldous Huxley|Ray Bradbury|Arthur C. Clarke",George Orwell
+Literature,Easy,Who wrote 'The Great Gatsby'?,"Ernest Hemingway|F. Scott Fitzgerald|William Faulkner|John Steinbeck",F. Scott Fitzgerald
+Literature,Easy,What is the name of Sherlock Holmes' assistant?,"Dr. Watson|Inspector Lestrade|Mycroft Holmes|Moriarty",Dr. Watson
+Literature,Easy,Who wrote 'The Catcher in the Rye'?,"J.D. Salinger|F. Scott Fitzgerald|Ernest Hemingway|Mark Twain",J.D. Salinger
+
+Literature,Medium,Who wrote 'War and Peace'?,"Leo Tolstoy|Fyodor Dostoevsky|Anton Chekhov|Vladimir Nabokov",Leo Tolstoy
+Literature,Medium,Who wrote 'Don Quixote'?,"Cervantes|Homer|Goethe|Dante",Cervantes
+Literature,Medium,What is the title of the final book in the 'Harry Potter' series?,"The Half-Blood Prince|The Order of the Phoenix|The Deathly Hallows|The Goblet of Fire","The Deathly Hallows"
+Literature,Medium,Who wrote 'The Odyssey'?,"Sophocles|Aristotle|Homer|Plato",Homer
+Literature,Medium,Who wrote 'The Canterbury Tales'?,"Chaucer|Shakespeare|Milton|Byron",Chaucer
+Literature,Medium,What novel begins with the line 'Call me Ishmael'?,"Moby-Dick|The Old Man and the Sea|Heart of Darkness|Treasure Island",Moby-Dick
+Literature,Medium,Which Shakespeare play features a character named Prospero?,"The Tempest|Hamlet|Macbeth|Julius Caesar","The Tempest"
+Literature,Medium,Who wrote 'The Divine Comedy'?,"Dante|Virgil|Goethe|Chaucer",Dante
+Literature,Medium,Who wrote 'One Hundred Years of Solitude'?,"Gabriel Garcia Marquez|Jorge Luis Borges|Pablo Neruda|Isabel Allende",Gabriel Garcia Marquez
+Literature,Medium,What is the name of the ship in 'Moby-Dick'?,"Pequod|Nautilus|Hispaniola|Endeavour",Pequod
+
+Literature,Hard,Who wrote 'Ulysses'?,"James Joyce|Samuel Beckett|Virginia Woolf|William Faulkner",James Joyce
+Literature,Hard,What is the longest play by Shakespeare?,"Hamlet|Macbeth|Othello|King Lear",Hamlet
+Literature,Hard,Who wrote 'The Brothers Karamazov'?,"Fyodor Dostoevsky|Leo Tolstoy|Anton Chekhov|Vladimir Nabokov",Fyodor Dostoevsky
+Literature,Hard,Who wrote 'Brave New World'?,"Aldous Huxley|George Orwell|Ray Bradbury|Isaac Asimov",Aldous Huxley
+Literature,Hard,Who wrote 'Crime and Punishment'?,"Fyodor Dostoevsky|Leo Tolstoy|Anton Chekhov|Vladimir Nabokov",Fyodor Dostoevsky
+Literature,Hard,Who wrote 'Anna Karenina'?,"Leo Tolstoy|Fyodor Dostoevsky|Anton Chekhov|Vladimir Nabokov",Leo Tolstoy
+Literature,Hard,Who wrote 'The Trial'?,"Franz Kafka|Hermann Hesse|Albert Camus|Jean-Paul Sartre",Franz Kafka
+Literature,Hard,Who wrote 'Moby-Dick'?,"Herman Melville|Mark Twain|Charles Dickens|Victor Hugo",Herman Melville
+Literature,Hard,Who wrote 'The Sound and the Fury'?,"William Faulkner|Ernest Hemingway|John Steinbeck|F. Scott Fitzgerald",William Faulkner
+Literature,Hard,Who wrote 'Wuthering Heights'?,"Emily Bronte|Charlotte Bronte|Jane Austen|Louisa May Alcott",Emily Bronte

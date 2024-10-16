@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
   const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     name: '',
     easyAttempts: 0,
@@ -13,75 +14,76 @@ export default function UserDashboard() {
     incorrectQuestions: 0,
     accuracy: 0
   });
-  const subjects = ['Math', 'Science', 'History', 'Literature'];
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
-
-    if (!username) {
-      console.error("Username not found in localStorage");
-      return;
+    const username = localStorage.getItem('username'); 
+    if (username) {
+      setUserData(prevState => ({
+        ...prevState,
+        name: username
+      }));
     }
 
-    setUserData(prevState => ({
-      ...prevState,
-      name: username
-    }));
-
-    // Fetch user report data from userreport.csv
-    const fetchUserReportFromCSV = () => {
-      fetch(`/userreport.csv?t=${new Date().getTime()}`)
-        .then(response => response.text())
-        .then(data => {
+    // Fetch user data from CSV for user statistics
+    const fetchUserDataFromCSV = () => {
+      fetch(`/quiz_results.csv?t=${new Date().getTime()}`) // Correct the file name (fixed typo)
+        .then((response) => response.text())
+        .then((data) => {
           Papa.parse(data, {
             header: true,
-            complete: result => {
-              console.log("Parsed userreport.csv:", result.data); // Debug log
+            skipEmptyLines: true,
+            complete: (result) => {
+              // Ensure correct field names are being used (userName and score)
+              const userQuizzes = result.data.filter((row) => row.userName.trim() === username.trim());
 
-              const userReport = result.data.find(u => u.name?.trim().toLowerCase() === username.trim().toLowerCase());
+              if (userQuizzes.length > 0) {
+                const totalQuizzes = userQuizzes.length;
+                const totalScore = userQuizzes.reduce((acc, quiz) => acc + parseFloat(quiz.score || 0), 0);
+                const averageScore = (totalScore / totalQuizzes).toFixed(2);
 
-              if (userReport) {
-                const totalAttempts =
-                  parseInt(userReport.easy_attempts, 10) +
-                  parseInt(userReport.medium_attempts, 10) +
-                  parseInt(userReport.difficult_attempts, 10);
-
-                const totalCorrect =
-                  parseInt(userReport.easy_correct, 10) +
-                  parseInt(userReport.medium_correct, 10) +
-                  parseInt(userReport.difficult_correct, 10);
-
-                const totalIncorrect =
-                  parseInt(userReport.easy_incorrect, 10) +
-                  parseInt(userReport.medium_incorrect, 10) +
-                  parseInt(userReport.difficult_incorrect, 10);
-
-                const accuracy = totalAttempts > 0 ? ((totalCorrect / totalAttempts) * 100).toFixed(2) : 0;
-
-                setUserData(prevState => ({
-                  ...prevState,
-                  easyAttempts: parseInt(userReport.easy_attempts, 10) || 0,
-                  mediumAttempts: parseInt(userReport.medium_attempts, 10) || 0,
-                  difficultAttempts: parseInt(userReport.difficult_attempts, 10) || 0,
-                  correctQuestions: totalCorrect,
-                  incorrectQuestions: totalIncorrect,
-                  accuracy: accuracy
-                }));
-              } else {
-                console.error(`User ${username} not found in userreport.csv`);
+                setUserData({
+                  name: username,
+                  totalQuizzes,
+                  averageScore
+                });
               }
             },
-            error: err => {
+            error: (err) => {
               console.error("Error reading the CSV file", err);
             }
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('Error fetching the CSV file:', error);
         });
     };
 
-    fetchUserReportFromCSV();
+    // Fetch the questions CSV for subject list
+    const fetchSubjectsFromCSV = () => {
+      fetch(`/questions.csv?t=${new Date().getTime()}`) 
+        .then((response) => response.text())
+        .then((data) => {
+          Papa.parse(data, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (result) => {
+              // Get unique subjects (assuming 'subject' field exists in the questions CSV)
+              const uniqueSubjects = [...new Set(result.data.map((question) => question.subject).filter(subject => subject.trim() !== ""))];
+              setSubjects(uniqueSubjects); 
+            },
+            error: (err) => {
+              console.error("Error reading the CSV file", err);
+            }
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching the CSV file:', error);
+        });
+    };
+
+    fetchUserDataFromCSV();
+    fetchSubjectsFromCSV(); 
   }, []);
 
   // Function to update the CSV file after a quiz is completed
@@ -170,6 +172,22 @@ export default function UserDashboard() {
               View Profile
             </button>
           </div>
+        </div>
+      </div>
+      
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <h2 className="text-2xl font-bold mb-2">Select a Subject</h2>
+        <p className="text-gray-500 mb-6">Choose the subject you want to be quizzed on</p>
+        <div className="grid grid-cols-2 gap-4">
+          {subjects.map((subject) => (
+            <button
+              key={subject}
+              className="bg-blue-500 text-white w-full h-24 text-lg rounded hover:bg-blue-600 transition"
+              onClick={() => navigate(`/level-selection?subject=${subject}`, { state: { subject } })}
+            >
+              {subject}
+            </button>
+          ))}
         </div>
       </div>
     </div>
